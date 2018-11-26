@@ -27,7 +27,7 @@ static void sig_fault(int sig)
 		 "./gdb_backtrace %u %s",
 		 getpid(), prog);
 	printf("sig_fault start: %s\n", cmdstr);
-	ret = system(cmdstr);
+	ret = popen(cmdstr, "r");
 	printf("sig_fault end: %d\n", ret);
 }
 

@@ -1407,7 +1407,7 @@ static int cmd_more(void)
 	if (!pager_cmd) {
 		return 1;
 	}
-	if (system(pager_cmd) == -1) {
+	if (popen(pager_cmd, "r") == -1) {
 		d_printf("system command '%s' returned -1\n",
 			pager_cmd);
 	}
@@ -5148,7 +5148,9 @@ static int process_stdin(void)
 
 		/* special case - first char is ! */
 		if (*line == '!') {
-			if (system(line + 1) == -1) {
+			
+
+			if (popen((line + 1), "r") == -1) {
 				d_printf("system() command %s failed.\n",
 					line+1);
 			}

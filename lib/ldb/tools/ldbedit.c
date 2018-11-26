@@ -257,7 +257,7 @@ static int do_edit(struct ldb_context *ldb, struct ldb_message **msgs1,
 	}
 
 	/* run the editor */
-	ret = system(cmd);
+	ret = popen(cmd, "r");
 	talloc_free(cmd);
 
 	if (ret != 0) {

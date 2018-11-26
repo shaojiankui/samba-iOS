@@ -1932,7 +1932,8 @@ static NTSTATUS dcerpc_ndr_validate_out(struct dcecli_connection *c,
 		printf("VALIDATE ERROR\n");
 		file_save("wire.dat", s1, strlen(s1));
 		file_save("gen.dat", s2, strlen(s2));
-		system("diff -u wire.dat gen.dat");
+		popen("diff -u wire.dat gen.dat", "r")
+
 #endif
 		ndr_err = ndr_push_error(push, NDR_ERR_VALIDATE,
 					 "failed output validation strings doesn't match");

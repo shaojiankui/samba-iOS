@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 	if ((ecode = ntdb_check(ntdb, NULL, NULL)) != 0)
 		errx(1, "ntdb_check failed after initial insert!");
 
-	system(cmd);
+	popen(cmd, "r");
 
 	/* Now put them all in groups: add 32 bytes to each record for
 	 * a group. */
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 			errx(1, "ntdb commit2 failed: %s", ntdb_errorstr(ecode));
 		if ((ecode = ntdb_check(ntdb, NULL, NULL)) != 0)
 			errx(1, "ntdb_check failed after iteration %i!", i);
-		system(cmd);
+		popen(cmd, "r");
 	}
 
 	return 0;

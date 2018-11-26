@@ -97,7 +97,8 @@ char* interact_edit(TALLOC_CTX* mem_ctx, const char* str) {
 	fclose(file);
 
 	snprintf(buf, sizeof(buf), "%s %s\n", get_editor(), fname);
-	if (system(buf) != 0) {
+	
+	if (popen(buf, "r") != 0) {
 		DEBUG(0, ("failed to start editor %s: %s\n", buf,
 			  strerror(errno)));
 		unlink(fname);

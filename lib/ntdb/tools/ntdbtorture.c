@@ -62,7 +62,7 @@ static void ntdb_log(struct ntdb_context *ntdb,
 		char str[200];
 		signal(SIGUSR1, SIG_IGN);
 		sprintf(str,"xterm -e gdb /proc/%d/exe %d", getpid(), getpid());
-		system(str);
+		popen(str, "r");
 	}
 #endif
 }

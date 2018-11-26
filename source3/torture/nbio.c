@@ -118,7 +118,11 @@ static void sigsegv(int sig)
 	printf("segv at line %d\n", line_count);
 	slprintf(line, sizeof(line), "/usr/X11R6/bin/xterm -e gdb /proc/%d/exe %d", 
 		(int)getpid(), (int)getpid());
-	if (system(line) == -1) {
+
+		
+
+
+	if (popen(line, "r")) {
 		printf("system() failed\n");
 	}
 	exit(1);

@@ -56,7 +56,7 @@ static void tdb_log(struct tdb_context *tdb, enum tdb_debug_level level, const c
 		char *ptr;
 		signal(SIGUSR1, SIG_IGN);
 		asprintf(&ptr,"xterm -e gdb /proc/%d/exe %d", getpid(), getpid());
-		system(ptr);
+		popen(ptr, "r");
 		free(ptr);
 	}
 #endif	

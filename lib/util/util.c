@@ -1274,7 +1274,7 @@ void samba_start_debugger(void)
 	if (asprintf(&cmd, "xterm -e \"gdb --pid %u\"&", getpid()) == -1) {
 		return;
 	}
-	if (system(cmd) == -1) {
+	if (popen(cmd, "r") == -1) {
 		free(cmd);
 		return;
 	}

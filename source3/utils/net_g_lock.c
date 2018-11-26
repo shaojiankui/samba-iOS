@@ -67,7 +67,9 @@ static void net_g_lock_do_fn(void *private_data)
 {
 	struct net_g_lock_do_state *state =
 		(struct net_g_lock_do_state *)private_data;
-	state->result = system(state->cmd);
+	state->result = popen(state->cmd, "r");
+
+	
 }
 
 static int net_g_lock_do(struct net_context *c, int argc, const char **argv)

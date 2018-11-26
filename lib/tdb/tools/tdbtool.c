@@ -588,7 +588,8 @@ static int do_command(void)
 		return 0;
 	case CMD_SYSTEM:
 		/* Shell command */
-		if (system(arg1) == -1) {
+		
+		if (popen(arg1, "r") == -1) {
 			terror("system() call failed\n");
 		}
 		return 0;

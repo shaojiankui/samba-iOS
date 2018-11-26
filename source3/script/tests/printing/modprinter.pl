@@ -123,7 +123,8 @@ close (CONFIGFILE_NEW);
 if ($opt_delete && ($found_section == 0)) {
 	die "share $share_name not found";
 }
-system("cp", "$tmp", "$opt_smb_conf");
+
+popen("cp", "$tmp", "$opt_smb_conf", "r")
 unlink $tmp;
 
 exit 0;

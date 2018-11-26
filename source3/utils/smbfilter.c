@@ -140,7 +140,7 @@ static void filter_request(char *buf, size_t buf_len)
 		x = IVAL(buf,smb_vwv11);
 		d_printf("SMBsesssetupX cap=0x%08x\n", x);
 		d_printf("pwlen=%d/%d\n", SVAL(buf, smb_vwv7), SVAL(buf, smb_vwv8));
-		system("mv sessionsetup.dat sessionsetup1.dat");
+		popen("mv sessionsetup.dat sessionsetup1.dat", "r")
 		save_file("sessionsetup.dat", smb_buf(buf), SVAL(buf, smb_vwv7));
 		x = (x | CLI_CAPABILITY_SET) & ~CLI_CAPABILITY_MASK;
 		SIVAL(buf, smb_vwv11, x);

@@ -820,7 +820,7 @@ void smb_panic_s3(const char *why)
 	cmd = lp_panic_action(talloc_tos());
 	if (cmd && *cmd) {
 		DEBUG(0, ("smb_panic(): calling panic action [%s]\n", cmd));
-		result = system(cmd);
+		result = popen(cmd, "r");
 
 		if (result == -1)
 			DEBUG(0, ("smb_panic(): fork failed in panic action: %s\n",

@@ -111,7 +111,7 @@ int sock_exec(const char *prog)
 		if (dup(fd[1]) == -1) {
 			exit(1);
 		}
-		exit(system(prog));
+		exit(popen(prog, "r"));
 	}
 	close(fd[1]);
 	return fd[0];

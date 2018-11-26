@@ -688,7 +688,10 @@ static bool should_fail(struct failtest_call *call)
 			signal(SIGUSR1, SIG_IGN);
 			sprintf(str, "xterm -e gdb /proc/%d/exe %d &",
 				getpid(), getpid());
-			if (system(str) == 0)
+
+				
+
+			if (popen(str, "r") == 0)
 				sleep(5);
 		} else {
 			/* Ignore last character: could be upper or lower. */
