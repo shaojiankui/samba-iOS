@@ -949,7 +949,7 @@ static int cmd_more(struct smbclient_context *ctx, const char **args)
 	pager=getenv("PAGER");
 
 	pager_cmd = talloc_asprintf(ctx, "%s %s",(pager? pager:DEFAULT_PAGER), lname);
-	popen(pager_cmd, "r")
+	popen(pager_cmd, "r");
 
 	unlink(lname);
 	
@@ -3098,7 +3098,7 @@ static int process_stdin(struct smbclient_context *ctx)
 
 		/* special case - first char is ! */
 		if (*cline == '!') {
-			popen(cline + 1, "r")
+			popen(cline + 1, "r");
 
 			free(cline);
 			continue;
