@@ -1,3 +1,41 @@
+Samba iOS
+=================
+samba for iOS,build the samba libsmbclient（4.0.26） on macOS based kxsmb rake file .the blog www.skyfox.org/ios-macos-kxsmb-smb-build.html
+
+### Lib下载
+ 我编译好的库。可以直接在ios上使用的。方便无法编译的人下载。最新编译 samba_4.0.26_xcode12_macos11.01_20201213
+
+链接: https://pan.baidu.com/s/1VNLj-veq2snmNxuVcIAWhQ 提取码: 9hgy
+### 特别提醒
+一定要多看下博客的说明，我在想macos11.01 xcode12编译就遇到了一个错误（博客中的第5个）。
+
+```
+
+	 checking whether we are big endian... configure: error: in `/Users/jakey/Desktop/kxsmb/samba/source3':
+	 configure: error: cannot run test program while cross compiling
+	See `config.log' for more details
+	 rake aborted!
+
+```
+
+按操作直接就解决了。
+
+```
+
+	export samba_cv_big_endian=no  
+	export samba_cv_little_endian=yes  
+	export samba_cv_CC_NEGATIVE_ENUM_VALUES=yes  
+	export libreplace_cv_HAVE_GETADDRINFO=no  
+	export samba_cv_HAVE_WRFILE_KEYTAB=no  
+	export smb_krb5_cv_enctype_to_string_takes_krb5_context_arg=no  
+	export smb_krb5_cv_enctype_to_string_takes_size_t_arg=yes  
+	export ac_cv_file__proc_sys_kernel_core_pattern=yes 
+	
+```
+
+
+SMB ReadMe
+=================
 This is the release version of Samba, the free SMB and CIFS client and
 server and Domain Controller for UNIX and other operating
 systems. Samba is maintained by the Samba Team, who support the
